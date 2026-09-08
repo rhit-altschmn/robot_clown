@@ -93,10 +93,10 @@ class GetKeyboardCommands:
                 command = {'joint': 'joint_head_pan', 'hot': -2.75}
                 hot_command = {'joint': 'joint_head_tilt', 'hot': 0.0}
             case 'X':
-                command = {'joint': 'joint_head_pan', 'hot': 1}
+                command = {'joint': 'joint_head_pan', 'hot': 1.0}
                 hot_command = {'joint': 'joint_head_tilt', 'hot': 0.0}
             case 'V':
-                command = {'joint': 'joint_head_pan', 'hot': -1}
+                command = {'joint': 'joint_head_pan', 'hot': -1.0}
                 hot_command = {'joint': 'joint_head_tilt', 'hot': 0.0}
 
             # lift

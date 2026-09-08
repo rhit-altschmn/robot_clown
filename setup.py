@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'keyboard_driver = robot_clown.keyboard_driver:main'
+            'eye_listener = robot_clown.eye_listener:main'
         ],
     },
 )
