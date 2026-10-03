@@ -16,6 +16,11 @@ This is a custom LED eye module design for the Hello-Robot RE2. This Eye module 
 
 Or with Xbox controller run: ros2 launch stretch_core stretch_driver.launch.py mode:=gamepad
 
+<img src="robot_clown/keyboard_controls.png" width="600" >
+<img src="controller_labeled.png" width="300" >
+
+
+
 **Show the Cameras**
 Main head camera
 - In new terminal: ros2 launch stretch_core d435i_basic.launch.py
