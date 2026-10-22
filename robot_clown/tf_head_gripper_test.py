@@ -24,14 +24,14 @@ class FrameListener(Node):
         self.tf_listener = TransformListener(self.tf_buffer, self)
 
         # Call on_timer function every second
-        time_period = 1.0 # seconds
+        time_period = 5.0 # seconds
         self.timer = self.create_timer(time_period, self.on_timer)
 
     def on_timer(self):
         # Store frame names in variables that will be used to
         # compute transformations
-        from_frame_rel = self.target_frame
-        to_frame_rel = 'camera_color_frame'
+        from_frame_rel = 'camera_color_frame'
+        to_frame_rel = self.target_frame
 
         # Look up the transformation between target_frame and link_mast frames
         try:

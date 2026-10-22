@@ -26,7 +26,7 @@ Main head camera
 - In new terminal: ros2 launch stretch_core d435i_basic.launch.py
 - Add \camera topic
 Gripper camera
-- In new terminal: 
+- In new terminal: ros2 launch stretch_core d405_basic.launch.py
 - Add \gripper_cam topic
 
-ros2 run rviz2 rviz2 -d /home/hello-robot/clown_ws/src/robot_clown/robot_clown/basic_cams.rviz
+ros2 run rviz2 rviz2 -d /home/hello-robot/clown_ws/src/robot_clown/robot_clown/good_views.rviz
