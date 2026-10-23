@@ -1,5 +1,5 @@
 import os
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_share_directory, get_package_share_path
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -37,22 +37,22 @@ def generate_launch_description():
             '/d405_basic.launch.py'])
         )
     
-    upright_rotater = Node(
-        condition=IfCondition(
-            PythonExpression([
-            publish_upright_img
-            ])),
-        package='image_rotate',
-        executable='upright_rotater',
-        remappings=[
-            ('image', '/camera/color/image_raw'),
-            ('rotated/image', '/camera/color/upright_image_raw'),
-        ],
-        parameters=[
-            {'target_frame_id': "", 
-            'target_x': '-1.5708'}
-            ],
-        )
+    # upright_rotater = Node(
+        # condition=IfCondition(
+        #     PythonExpression([
+        #     publish_upright_img
+        #     ])),
+        # package='image_rotate',
+        # executable='upright_rotater',
+        # remappings=[
+        #     ('image', '/camera/color/image_raw'),
+        #     ('rotated/image', '/camera/color/upright_image_raw'),
+        # ],
+        # parameters=[
+        #     {'target_frame_id': "", 
+        #     'target_x': '-1.5708'}
+        #     ],
+        # )
 
     tf_show = Node(
         package='stretch_ros_tutorials',
@@ -75,9 +75,10 @@ def generate_launch_description():
         
 
     return LaunchDescription(declare_configurable_parameters(configurable_parameters) + [
-        d435i_high_launch,
+        d435i_basic_launch,
         d405_basic_launch,
-        upright_rotater,
+        # upright_rotater,
         tf_show,
         tf_read,
+        rviz_node,
         ])
