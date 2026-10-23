@@ -6,6 +6,9 @@ from tf2_ros import TransformException
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
 
+import math
+
+
 # This node prints the transformation between the fk_link_mast frame and a given target frame
 # The default target frame is the link_grasp_center frame
 # To change the target frame just pass it as an argument to the node, for ex. "target_frame:='fk_link_lift'"
@@ -23,8 +26,10 @@ class FrameListener(Node):
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
 
+        self.tf_vector = [0,0,0]
+
         # Call on_timer function every second
-        time_period = 5.0 # seconds
+        time_period = 3.0 # seconds
         self.timer = self.create_timer(time_period, self.on_timer)
 
     def on_timer(self):
@@ -45,10 +50,40 @@ class FrameListener(Node):
                 f'Could not transform {to_frame_rel} to {from_frame_rel}: {ex}')
             return
 
+        tX = trans.transform.translation.x
+        tY = trans.transform.translation.y
+        tZ = trans.transform.translation.z
+
+        self.tf_vector = [tX, tY, tZ]
+
+        
+
         # self.get_logger().info(
                         # f'the pose of target frame {from_frame_rel} with reference to {to_frame_rel} is: {trans}')
 
-        self.get_logger().info(f'transform (x,y,z): {trans.transform.translation.x}, {trans.transform.translation.y}, {trans.transform.translation.z}')
+        # self.get_logger().info(f'transform (x,y,z): {trans.transform.translation.x}, {trans.transform.translation.y}, {trans.transform.translation.z}')
+        self.get_logger().info(f'transform (x,y,z): {self.tf_vector}')
+        
+        self.calculate_angles()
+
+
+
+    def calculate_angles(self):
+        dx = self.tf_vector[0]
+        dy = self.tf_vector[1]
+        dz = self.tf_vector[2]
+
+        self.get_logger().info(f'calculate angles (x,y,z): {dx}, {dy}, {dz}')
+        
+        # Calculate required pan and tilt angles geometrically
+        import math
+        target_pan = math.atan2(dy, dx)
+        target_tilt = math.atan2(-dz, math.sqrt(dx**2 + dy**2))
+
+        self.get_logger().info(f'Cam Angles: Pan:{target_pan}  Tilt:{target_tilt}')
+
+
+
 
 def main():
     rclpy.init()
