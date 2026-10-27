@@ -25,17 +25,17 @@ def generate_launch_description():
     robot_clown_path = get_package_share_path('robot_clown')
 
 
-    d435i_basic_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('stretch_core'), 'launch'),
-            '/d435i_basic.launch.py'])
-        )
+    # d435i_basic_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource([os.path.join(
+    #         get_package_share_directory('stretch_core'), 'launch'),
+    #         '/d435i_basic.launch.py'])
+    #     )
 
-    d405_basic_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('stretch_core'), 'launch'),
-            '/d405_basic.launch.py'])
-        )
+    # d405_basic_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource([os.path.join(
+    #         get_package_share_directory('stretch_core'), 'launch'),
+    #         '/d405_basic.launch.py'])
+    #     )
     
     # upright_rotater = Node(
         # condition=IfCondition(

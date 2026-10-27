@@ -29,4 +29,10 @@ Gripper camera
 - In new terminal: ros2 launch stretch_core d405_basic.launch.py
 - Add \gripper_cam topic
 
+
+ros2 launch robot_clown full_cam_rviz.launch.py
+- launches both cams (in theory)
+- launches transfer frames
+- launches good_views rviz
+
 ros2 run rviz2 rviz2 -d /home/hello-robot/clown_ws/src/robot_clown/robot_clown/good_views.rviz
