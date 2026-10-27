@@ -75,8 +75,8 @@ def generate_launch_description():
         
 
     return LaunchDescription(declare_configurable_parameters(configurable_parameters) + [
-        d435i_basic_launch,
-        d405_basic_launch,
+        # d435i_basic_launch,
+        # d405_basic_launch,
         # upright_rotater,
         tf_show,
         tf_read,

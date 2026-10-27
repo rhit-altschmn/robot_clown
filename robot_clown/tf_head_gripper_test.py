@@ -18,9 +18,13 @@ class FrameListener(Node):
         super().__init__('stretch_tf_listener')
 
         # Declare and acquire `target_frame` parameter
-        self.declare_parameter('target_frame', 'link_grasp_center')
+        self.declare_parameter('target_frame', 'gripper_camera_link')
         self.target_frame = self.get_parameter(
             'target_frame').get_parameter_value().string_value
+        
+        self.grip_cam_frame = 'gripper_camera_link'
+        self.head_cam_frame = 'camera_link'
+        self.wrist_frame = 'link_aruco_top_wrist'
 
         # Start a Tf buffer that will store the tf information for a few seconds
         self.tf_buffer = Buffer()
